@@ -66,7 +66,7 @@ class CarpetaTest {
 	@Test
 	void testBuscar() {
 		assertEquals("banana", carpeta.buscar("banana").getTitulo());
-		//assertNull(carpeta.buscar("mandarina").getTitulo());
+		assertNull(carpeta.buscar("mandarina"));
 	}
 
 	@Test
@@ -75,3 +75,42 @@ class CarpetaTest {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

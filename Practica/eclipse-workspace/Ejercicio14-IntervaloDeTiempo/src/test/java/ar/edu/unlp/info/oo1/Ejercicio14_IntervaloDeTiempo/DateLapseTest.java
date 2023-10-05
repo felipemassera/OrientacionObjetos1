@@ -31,8 +31,23 @@ class DateLapseTest {
 	}
 
 	@Test
-	void testIncludesDate() {
-		assertTrue(dateLapse.includesDate(LocalDate.of(1990, 10, 10)));
+	void testIncludesDateInfBorder() {
+		assertTrue(dateLapse.includesDate(LocalDate.of(1988, 2, 19)));
 	}
-
+	@Test
+	void testIncludesDateSupBorder() {
+		assertTrue(dateLapse.includesDate(LocalDate.of(2023, 10, 4)));
+	}
+	@Test
+	void testIncludesDate() {
+		assertTrue(dateLapse.includesDate(LocalDate.of(2023, 10, 2)));
+	}
+	@Test
+	void testIncludesDateOutInf() {
+		assertFalse(dateLapse.includesDate(LocalDate.of(1988, 2, 18)));
+	}
+	@Test
+	void testIncludesDateOutSup() {
+		assertFalse(dateLapse.includesDate(LocalDate.of(2023, 10, 5)));
+	}
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class ClienteDeCorreoTest {
 	ClienteDeCorreo cliente;
+	ClienteDeCorreo clienteVacio;
 	Carpeta carpeta;
 	Email email1;
 	Email email2;
@@ -16,8 +17,10 @@ class ClienteDeCorreoTest {
 	Archivo archivo3;
 	Archivo archivo4;
 	
+	
 	@BeforeEach
 	void setUp() {
+		clienteVacio =new ClienteDeCorreo();
 		cliente = new ClienteDeCorreo();
 		carpeta = new Carpeta("Enviados");  // 83
 		archivo4 =new Archivo("Santiago");//8
@@ -65,5 +68,8 @@ class ClienteDeCorreoTest {
 	void testEspacioOcupado() {
 		assertEquals(83, cliente.espacioOcupado());
 	}
-
+	@Test
+	void testEspacioOcupadoVacio() {
+		assertEquals(0, clienteVacio.espacioOcupado());
+	}
 }

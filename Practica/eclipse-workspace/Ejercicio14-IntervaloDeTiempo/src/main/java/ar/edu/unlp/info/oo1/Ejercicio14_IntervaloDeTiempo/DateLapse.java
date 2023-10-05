@@ -22,7 +22,9 @@ public class DateLapse {
 		return (int)ChronoUnit.DAYS.between(this.from, this.to);
 	}
 	public boolean includesDate(LocalDate other) {
-		return other.isAfter(from) && other.isBefore(to);
+		return !(other.isBefore(this.from) || other.isAfter(this.to));
+		//return (this.from.isBefore(other) && this.to.isAfter(other)) || (this.to.isEqual(other) || (this.from.isEqual(other)));
+		//return other.isAfter(from) && other.isBefore(to);
 	}
 }
 
