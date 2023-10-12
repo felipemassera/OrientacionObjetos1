@@ -1,31 +1,29 @@
-package ar.edu.unlp.info.oo1.Ejercicio14_IntervaloDeTiempo;
+package ar.edu.unlp.info.oo1.Ejercicio14Bis_IntervaloDeTiempo;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class DateLapse {
 	private LocalDate from;
-	private LocalDate to;
+	private int sizeInDays;
 	
 	
 	public DateLapse(LocalDate from, LocalDate to) {
 		this.from = from;
-		this.to = to;
+		this.sizeInDays = (int)ChronoUnit.DAYS.between(from, to);
 	}
 	public LocalDate getFrom() {
 		return this.from;
 	}
-	public LocalDate getTo() {
-		return this.to;
-	}
 	public int sizeInDays() {
-		return (int)ChronoUnit.DAYS.between(this.from, this.to);
+		return this.sizeInDays;
 	}
-	
-	/* contempla que las fecha "otra" < que "desde", y > "despues" y lo niego (para que sea si o si en el medio),
-	 * */
+	public LocalDate getTo() {
+		return this.from.plusDays(this.sizeInDays());
+	}
 	public boolean includesDate(LocalDate other) {
-		return !(other.isBefore(this.from) || other.isAfter(this.to));
+		
+		return !(other.isBefore(this.from) || other.isAfter(this.getTo()));
 	}
 }
 
