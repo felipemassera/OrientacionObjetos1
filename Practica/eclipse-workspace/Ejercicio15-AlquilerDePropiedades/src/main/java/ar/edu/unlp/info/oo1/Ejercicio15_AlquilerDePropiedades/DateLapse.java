@@ -1,28 +1,38 @@
-package ar.edu.unlp.info.oo1.Ejercicio14Bis_IntervaloDeTiempo;
+package ar.edu.unlp.info.oo1.Ejercicio15_AlquilerDePropiedades;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class DateLapse {
 	private LocalDate from;
-	private int sizeInDays;
+	private LocalDate to;
 	
 	
 	public DateLapse(LocalDate from, LocalDate to) {
 		this.from = from;
-		this.sizeInDays = (int)ChronoUnit.DAYS.between(from, to);
+		this.to = to;
 	}
 	public LocalDate getFrom() {
 		return this.from;
 	}
-	public int sizeInDays() {
-		return this.sizeInDays;
-	}
 	public LocalDate getTo() {
-		return this.from.plusDays(this.sizeInDays());
+		return this.to;
 	}
+	public int sizeInDays() {
+		return (int)ChronoUnit.DAYS.between(this.from, this.to);
+	}
+	
+	/* contempla que las fecha "otra" < que "desde", y > "despues" y lo niego (para que sea si o si en el medio),
+	 * */
 	public boolean includesDate(LocalDate other) {
-		return !(other.isBefore(this.from) || other.isAfter(this.getTo()));
+		return !(other.isBefore(this.from) || other.isAfter(this.to));
+	}
+	
+	/**
+	 * retorna true si el periodo de tiempo del receptor se superpone con el recibido por parametro
+	 */
+	public boolean overlaps (DateLapse anotherDateLapse) {
+		return includesDate(anotherDateLapse.getFrom())||(includesDate(anotherDateLapse.getTo()));
 	}
 }
 
